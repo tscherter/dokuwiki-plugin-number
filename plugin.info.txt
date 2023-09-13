@@ -1,0 +1,7 @@
+base   number
+author Vincent Tscherter
+email  vincent@tscherter.net
+date   2023-09-13
+name   number plugin
+desc   Stylized number encodings with additional tooltip for more info.
+url    https://www.dokuwiki.org/plugin:number
