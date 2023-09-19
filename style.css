@@ -1,0 +1,45 @@
+.plugin-number {
+    display: inline-block;
+    cursor: help;
+    background-color: FloralWhite;
+    border-radius: 0.5ex;
+    padding: 0 0.5ex;
+    
+}
+
+.plugin-number-tooltip {
+	font-size: 90%;
+	z-index:999;
+}
+
+.plugin-number-tooltip, .plugin-number-tooltip:before {
+    display: none;
+    background-color: #fffAF0;
+    position: absolute;
+    border: 1px solid rgb(165, 165, 165);
+    border-radius: .5ex;
+    box-shadow: 2px 2px 5px #888888;
+    margin-top: 4ex;
+    margin-left: 0ex;
+    padding: 5px;
+}
+
+.plugin-number:hover .plugin-number-tooltip,
+.plugin-number:hover .plugin-number-tooltip:before {
+    display: inline-block;
+}
+
+.plugin-number-tooltip:before {
+    content: "";
+    box-shadow: none;
+    display: inline-block;
+    border-radius: 0px;
+    width: 10px;
+    height: 10px;
+    margin-top: -11px;
+    margin-left: vw;
+    padding: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+  }
