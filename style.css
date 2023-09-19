@@ -8,12 +8,13 @@
 }
 
 .plugin-number-tooltip {
+    display: none;
 	font-size: 90%;
 	z-index:999;
 }
 
 .plugin-number-tooltip, .plugin-number-tooltip:before {
-    display: none;
+    //display: none;
     background-color: #fffAF0;
     position: absolute;
     border: 1px solid rgb(165, 165, 165);

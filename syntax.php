@@ -97,20 +97,20 @@ class syntax_plugin_number extends SyntaxPlugin
         if ( $type=='dec') {
             $number =  self::renderDec($data['raw']);
             $tooltip = "<strong>Decimal number</strong> (base 10)";
-            $tooltip .= "<div>= ".self::renderBin($value)." (binary)</div>";
+            $tooltip .= "<br>= ".self::renderBin($value)." (binary)";
             if("~".$value != "~".$data['raw'])
-                $tooltip .= "<div>= ".self::renderDec($value)." (decimal)</div>";
-            $tooltip .= "<div>= ".self::renderHex($value)." (hexadecimal)</div>";
+                $tooltip .= "<spbran>= ".self::renderDec($value)." (decimal)";
+            $tooltip .= "<br>= ".self::renderHex($value)." (hexadecimal)";
         } else if ( $type=='bin') {
             $number =  self::renderBin($value);
             $tooltip = "<strong>Binary number</strong> (base 2) ";
-            $tooltip .= "<div>= ".self::renderDec($value)." (decimal)</div>";
-            $tooltip .= "<div>= ".self::renderHex($value)." (hexadecimal)</div>";
+            $tooltip .= "<br>= ".self::renderDec($value)." (decimal)";
+            $tooltip .= "<br>= ".self::renderHex($value)." (hexadecimal)";
         } else if ( $type=='hex') {
             $number =  self::renderHex($value);
             $tooltip = "<strong>Hexadecimal number</strong> (base 16)";
-            $tooltip .= "<div>= ".self::renderBin($value)." (binary)</div>";
-            $tooltip .= "<div>= ".self::renderDec($value)." (decimal)</div>";
+            $tooltip .= "<br>= ".self::renderBin($value)." (binary)";
+            $tooltip .= "<br>= ".self::renderDec($value)." (decimal)";
         } else if ( $type=='padic') {
             $number =  '<code style="color: blue">'.
                 '<span style="color: grey">[</span>'.
@@ -121,11 +121,11 @@ class syntax_plugin_number extends SyntaxPlugin
             $tooltip = "<strong>".
                 explode(";", self::NUMBERSYSTEM)[$data['base']].
                 " number</strong> (base ".$data['base'].")";
-            $tooltip .= "<div>= ".self::renderBin($value)." (binary)</div>";
-            $tooltip .= "<div>= ".self::renderDec($value)." (decimal)</div>";
-            $tooltip .= "<div>= ".self::renderHex($value)." (hexadecimal)</div>";
+            $tooltip .= "<br>= ".self::renderBin($value)." (binary)";
+            $tooltip .= "<br>= ".self::renderDec($value)." (decimal)";
+            $tooltip .= "<br>= ".self::renderHex($value)." (hexadecimal)";
         } 
-        
+         // 
         $renderer->doc .= "<span class='plugin-number'><span class='plugin-number-tooltip'>$tooltip</span>$number</span>";
         
         return true;
