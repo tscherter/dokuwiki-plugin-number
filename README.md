@@ -1,5 +1,8 @@
-# number plugin for DokuWiki
-![tootip in action](/tscherter/number/blob/main/image.png)
+# Number plugin for DokuWiki
+
+<p style="padding: 1ex; float: right; width: 200px">
+  <img src="https://github.com/tscherter/number/blob/main/image.png?raw=true" alt="Tooltip in action">
+</p>
 
 Stylized number encodings with additional tooltip for more info.
 
