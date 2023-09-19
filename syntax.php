@@ -39,7 +39,7 @@ class syntax_plugin_number extends SyntaxPlugin
     {
         $data = [];
         
-        $data['raw'] = $raw = trim(substr($match, 4, -2));
+        $data['raw'] = $raw = htmlentities(trim(substr($match, 4, -2)));
 
         if (preg_match("/^\d+(e\d+)?$/i", $raw)) {
             $data['type'] = 'dec';
@@ -68,12 +68,14 @@ class syntax_plugin_number extends SyntaxPlugin
         return "<code style='color: blue'>$value</code>";
     }
 
-    static private function renderHex ($value) {
-        return '<code style="color: blue"><span style="color: red">0x</span>'.dechex($value).'</code>';
+    static private function renderHex ($value) { // $data['raw']
+        if (is_string($value)) $value = substr($value,2);
+        return '<code style="color: blue"><span style="color: red">0x</span>'.$value.'</code>';
     }
 
     static private function renderBin ($value) {
-        return '<code style="color: blue"><span style="color: red">0b</span>'.decbin($value).'</code>';
+        if (is_string($value)) $value = substr($value,2);
+        return '<code style="color: blue"><span style="color: red">0b</span>'.$value.'</code>';
     }
 
     const NUMBERSYSTEM = ";;Binary;Ternary;Quaternary;Quinary;Senary;Septenary;Octal;Nonary;Decimal;Undecimal;Duodecimal;Tridecimal;Tetradecimal;Pentadecimal;Hexadecimal;Heptadecimal;Octodecimal;Enneadecimal;Vigesimal;Unvigesimal;Duovigesimal;Trivigesimal;Tetravigesimal;Pentavigesimal;Hexavigesimal;Heptavigesimal;Octovigesimal;Enneavigesimal;Trigesimal;Untrigesimal;Duotrigesimal;Tritrigesimal;Tetratrigesimal;Pentatrigesimal; Hexatrigesimal";
@@ -102,12 +104,12 @@ class syntax_plugin_number extends SyntaxPlugin
                 $tooltip .= "<spbran>= ".self::renderDec($value)." (decimal)";
             $tooltip .= "<br>= ".self::renderHex($value)." (hexadecimal)";
         } else if ( $type=='bin') {
-            $number =  self::renderBin($value);
+            $number =  self::renderBin($data['raw']);
             $tooltip = "<strong>Binary number</strong> (base 2) ";
             $tooltip .= "<br>= ".self::renderDec($value)." (decimal)";
             $tooltip .= "<br>= ".self::renderHex($value)." (hexadecimal)";
         } else if ( $type=='hex') {
-            $number =  self::renderHex($value);
+            $number =  self::renderHex($data['raw']);
             $tooltip = "<strong>Hexadecimal number</strong> (base 16)";
             $tooltip .= "<br>= ".self::renderBin($value)." (binary)";
             $tooltip .= "<br>= ".self::renderDec($value)." (decimal)";
