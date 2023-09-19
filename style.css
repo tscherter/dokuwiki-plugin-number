@@ -1,10 +1,6 @@
 .plugin-number {
     display: inline-block;
     cursor: help;
-    background-color: FloralWhite;
-    border-radius: 0.5ex;
-    padding: 0 0.5ex;
-    
 }
 
 .plugin-number-tooltip {
