@@ -68,14 +68,18 @@ class syntax_plugin_number extends SyntaxPlugin
         return "<code style='color: blue'>$value</code>";
     }
 
-    static private function renderHex ($value) { // $data['raw']
-        if (is_string($value)) $value = substr($value,2);
-        return '<code style="color: blue"><span style="color: red">0x</span>'.$value.'</code>';
+    static private function renderHex ($value) { // $data['raw'] 
+        if (is_string($value)) {
+            return '<code style="color: blue"><span style="color: red">0x</span>'.substr($value, 2).'</code>';
+        }
+        return '<code style="color: blue"><span style="color: red">0x</span>'.dechex($value).'</code>';
     }
 
     static private function renderBin ($value) {
-        if (is_string($value)) $value = substr($value,2);
-        return '<code style="color: blue"><span style="color: red">0b</span>'.$value.'</code>';
+        if (is_string($value)) {
+            return '<code style="color: blue"><span style="color: red">0b</span>'.substr($value, 2).'</code>';
+        }
+        return '<code style="color: blue"><span style="color: red">0b</span>'.decbin($value).'</code>';
     }
 
     const NUMBERSYSTEM = ";;Binary;Ternary;Quaternary;Quinary;Senary;Septenary;Octal;Nonary;Decimal;Undecimal;Duodecimal;Tridecimal;Tetradecimal;Pentadecimal;Hexadecimal;Heptadecimal;Octodecimal;Enneadecimal;Vigesimal;Unvigesimal;Duovigesimal;Trivigesimal;Tetravigesimal;Pentavigesimal;Hexavigesimal;Heptavigesimal;Octovigesimal;Enneavigesimal;Trigesimal;Untrigesimal;Duotrigesimal;Tritrigesimal;Tetratrigesimal;Pentatrigesimal; Hexatrigesimal";
@@ -88,11 +92,11 @@ class syntax_plugin_number extends SyntaxPlugin
         }
         $value= $data['value'];
         if (is_nan($value)) {
-            $renderer->doc .= "<code style='color: red'>⚠️ warning: ".htmlentities($data['raw'])." is not a valid input</code>";
+            $renderer->doc .= "<code style='color: red'>⚠️ warning: ".$data['raw']." is not a valid input</code>";
             return true;
         }
         if (!is_int($value) || $value>=9223372036854775807) {
-            $renderer->doc .= "<code style='color: red'>⚠️ warning: ".htmlentities($data['raw'])." is not a safe integer</code>";
+            $renderer->doc .= "<code style='color: red'>⚠️ warning: ".$data['raw']." is not a safe integer</code>";
             return true;
         }
         $type= $data['type'];
