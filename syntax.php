@@ -97,9 +97,9 @@ class syntax_plugin_number extends SyntaxPlugin
         if (is_nan($value)) {
             $renderer->doc .= '<code style="color: red">⚠️ warning: ' . $data['raw'] . ' is not a valid input</code>';
             return true;
-        }
-        if (!is_int($value) || $value >= 9223372036854775807) {
-            $renderer->doc .= '<code style="color: red">⚠️ warning: ' . $data['raw'] . ' is not a safe integer</code>';
+        } 
+        if (!is_int($value) || $value >= PHP_INT_MAX) {
+            $renderer->doc .= '<code style="color: red">⚠️ warning: ' . $data['raw'] . ' is not a safe for conversion </code>'.$value;
             return true;
         }
         $type = $data['type'];
